@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>測試 URL 參數</title>
+</head>
+
+<body>
+    <h1>電影票資訊</h1>
+    <p>電影名：<span id="movieName"></span></p>
+    <p>場次：<span id="session"></span></p>
+    <p>付款狀態：<span id="paymentStatus"></span></p>
+
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const movieName = getQueryParam('movie');
+            const session = getQueryParam('session');
+            const paid = getQueryParam('paid');
+
+            if (movieName) {
+                document.getElementById('movieName').textContent = movieName;
+            }
+            if (session) {
+                document.getElementById('session').textContent = session;
+            }
+            if (paid === 'true') {
+                document.getElementById('paymentStatus').textContent = '已付款';
+            } else if (paid === 'false') {
+                document.getElementById('paymentStatus').textContent = '未付款';
+            }
+        });
+    </script>
+</body>
+
+</html>
